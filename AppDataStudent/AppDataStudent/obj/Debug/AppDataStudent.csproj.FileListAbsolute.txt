@@ -1,0 +1,10 @@
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\bin\Debug\AppDataStudent.exe.config
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\bin\Debug\AppDataStudent.exe
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\bin\Debug\AppDataStudent.pdb
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.csproj.AssemblyReference.cache
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.Form1.resources
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.Properties.Resources.resources
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.csproj.GenerateResource.cache
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.csproj.CoreCompileInputs.cache
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.exe
+C:\Users\class\Desktop\Database\AppDataStudent\AppDataStudent\obj\Debug\AppDataStudent.pdb
