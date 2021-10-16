@@ -17,8 +17,8 @@ namespace AppDataStudent
         {
             InitializeComponent();
         }
-
-        string StrConn = "Provider = Microsoft.ACE.OLEDB.12.0;data source = C:/Users/class/Desktop/Database/db_student.accdb";
+                                                                            // back 3 step to db_student.accdb
+        string StrConn = "Provider = Microsoft.ACE.OLEDB.12.0;data source = ../../../db_student.accdb";
         public string sql;
         OleDbConnection Conn = new OleDbConnection();
         OleDbDataAdapter da;
@@ -44,12 +44,16 @@ namespace AppDataStudent
             string sqlStu = "select * from tb_histstudent";
             if (IsFind == true)
             {
-                ds.Tables["tb_hisstudent"].Clear();
+                //ds.Tables["tb_hisstudent"].Clear();
+                ds.Tables["tb_histstudent"].Clear();
             }
             da = new OleDbDataAdapter(sqlStu, Conn);
             da.Fill(ds, "tb_histstudent");
             if (ds.Tables["tb_histstudent"].Rows.Count != 0){
                 IsFind = true;
+                // forgot one line below
+                dgvShow.ReadOnly = true;
+
                 dgvShow.DataSource = ds.Tables["tb_histstudent"];
             }
             else
@@ -57,6 +61,8 @@ namespace AppDataStudent
                 IsFind = false;
             }
         }
+
+
 
         private void FormatDataStudent()
         {
@@ -93,7 +99,7 @@ namespace AppDataStudent
             }
             catch
             {
-                MessageBox.Show("เกิดข้อผิดพลาด");
+                MessageBox.Show("เกิดข้อผิดพลาด-----------dgvShow");
             }
         }
 
@@ -125,15 +131,17 @@ namespace AppDataStudent
             try
             {
                 if (MessageBox.Show("คุณต้องการเพิ่มข้อมูลใช่หรือไม่ ?","คำเตือน",MessageBoxButtons.YesNo,MessageBoxIcon.Question)== DialogResult.Yes)
-                {
-                    sqlAdd = "insert into tb_histstudent(stu_id,stu_name,stu_surname,stu_bdate,stu_weight)value('"
-                        + txtWeight.Text + "','" 
+                {                                                                                            // values not value
+                    sqlAdd = "insert into tb_histstudent(stu_id, stu_name, stu_surname, stu_bdate, stu_weight)values('"
+                        //+ txtWeight.Text + "','"  this is weight ! and forgot line -> + txtid.Text + "','"
+                        + txtid.Text + "','"
                         + txtName.Text + "','" 
                         + txtSName.Text + "','" 
                         + dtBirth.Value + "','" 
                         + txtWeight.Text + "')";
 
-                    if(Conn.State == ConnectionState.Open)
+
+                    if (Conn.State == ConnectionState.Open)
                     {
                         Conn.Close();
                     }
@@ -152,8 +160,9 @@ namespace AppDataStudent
             }
             catch
             {
-                MessageBox.Show("ไม่สามารถติดต่อฐานข้อมูลได้","ผิดพลาด");
+                MessageBox.Show("ไม่สามารถติดต่อฐานข้อมูลได้", "ผิดพลาด");
             }
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -170,8 +179,12 @@ namespace AppDataStudent
             {
                 if (MessageBox.Show("คุณต้องการแก้ไขข้อมูลใช่หรือไม่ ?", "ยืนยัน", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    sqlEdit = "update tb_histstudent set stu_name = '" + txtName.Text + "',stu_surname = '" + txtSName.Text + "',stu_bdate = '" + dtBirth.Value + "',stu_weight = '" 
-                        + txtWeight.Text+ "',where stu_id ='" + txtid.Text + "'";
+                    sqlEdit = "update tb_histstudent set stu_name = '" + txtName.Text 
+                        + "',stu_surname = '" + txtSName.Text 
+                        + "',stu_bdate = '" + dtBirth.Value 
+                        + "',stu_weight = '" + txtWeight.Text 
+                       // + "',where stu_id = '" + txtid.Text + "'";   this line must have no "," before where condition
+                        + "'where stu_id = '" + txtid.Text + "'";
 
                     if (Conn.State == ConnectionState.Open)
                     {
@@ -192,7 +205,7 @@ namespace AppDataStudent
             }
             catch
             {
-                MessageBox.Show("ข้อมูลผิดพลาด", "ผิดพลาด");
+                MessageBox.Show("ข้อมูลผิดพลาด-ไม่สามารถแก้ไขได้", "ผิดพลาด");
             }
         }
 
